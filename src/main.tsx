@@ -1,7 +1,6 @@
 import './index.css'
 import { createSignal, Component, JSXElement } from 'solid-js'
 import { render } from 'solid-js/web'
-
 import { A, Routes, Route, Router } from "@solidjs/router"
 
 const Center: Component<{ children: JSXElement }> = (props) => {

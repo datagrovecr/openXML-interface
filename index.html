@@ -1,15 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-</head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../dist/output.css">
 
-<body class="text-white bg-black">
-  <div id="app"></div>
-  <script type="module" src="/src/main.tsx"></script>
+    <title>DG file converter</title>
+</head>
+<body class="bg-black">
+    <header>
+        <h1 class="p-2 font-mono text-3xl text-white mx-auto container text-center">Convert office files to markdown</h1>
+    </header>
+    <main>
+        <div id="description" class="p-2 font-mono text-white">
+            <p>Convert files from word(.docx) to markdown</p>
+        </div>
+        <div id="inputs" class="text-white font-mono border-2 border-green-600 rounded-lg m-3 container mx-auto px-10 max-w-max max-h-screen">
+            <ul class="space-x-4 space-y-4">
+                <li>
+                    <label for="docxFile">Select a Docx File</label>
+                    <input  class="p-2 w-30 h-8" id="docxFile" type="file" placeholder="Give me a docx file" accept=".docx"></input>
+                </li>
+            </ul>
+            
+            <div class="flex flex-row w-full m-2">
+              <div class="flex-1"></div><button class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full content-center space-x-4 space-y-4">Convert file</button><div class="flex-1"></div>
+            </div>
+		</div>
+        <div id="codemirror" class="text-white font-mono border-2 border-green-600 rounded-lg m-3 container mx-auto px-10 max-w-max max-h-screen">
+            Codemirror preview
+        </div>
+    </main>
+    <script type="module" src="/src/main.tsx"></script>
 </body>
 
 </html>
