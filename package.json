@@ -17,6 +17,8 @@
   },
   "dependencies": {
     "@solidjs/router": "^0.6.0",
+    "codemirror": "^6.0.1",
+    "@codemirror/lang-markdown": "^6.0.5",
     "solid": "^0.2.1",
     "vite-plugin-solid": "^2.5.0"
   }
