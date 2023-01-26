@@ -31,7 +31,7 @@ const EditorPage = () => {
   return  <div class='m-2 p-2 rounded-md bg-white dark:bg-black text-black dark:text-white max-h-screen sm:max-h-screen' ><Editor/></div>
 }
 
-const SideMenu = () => {return ('hello')}
+
 function App() {
   return <>
     <nav>
