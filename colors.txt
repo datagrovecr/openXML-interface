@@ -9,3 +9,7 @@
       'grey':'#18181B', zinc-900
       'white':'#ffffff' white 
     },
+
+
+Border for file input box
+ border-2 border-emerald-500 dark:border-green-500 rounded-lg m-3 container mx-auto px-10 max-w-max  max-h-screen sm:max-w-max 
