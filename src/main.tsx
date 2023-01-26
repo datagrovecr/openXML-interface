@@ -2,8 +2,7 @@ import './index.css'
 import { createSignal, Component, JSXElement } from 'solid-js'
 import { render } from 'solid-js/web'
 import { A, Routes, Route, Router } from "@solidjs/router"
-
-import { Editor } from './editor'
+import { Icon } from "solid-heroicons";import { Editor } from './editor'
 
 const Center: Component<{ children: JSXElement }> = (props) => {
   return <div class='flex flex-row'>
@@ -18,7 +17,7 @@ const Home = () => {
   return <>
     <Center>
 
-      <div><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => setCount(count() + 1)}>+</button>  Counter: {count} Welcome to the markdown converter</div>
+      <div><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => setCount(count() + 1)}>+</button>  Counter: {count} Welcome to the DataGrove file converter</div>
     </Center>
   </>
 }
@@ -47,5 +46,21 @@ function App() {
     </Routes>
   </>
 }
+//sideBar menu code
+function SideBar(){
+  return(
+    <div id="sidebarMenu" class="m-0 w-44 max-h-screen bg-white dark:bg-slate-800 text-black dark:text-white flex-col content-center ">
+    <div id="sidebarTop">
+      top 
+    </div>
+    <div id="sidebarMiddle">center</div>
+    <div id="sidebarBottom">bottom</div>
+    </div>
+  );
 
+  
+}
+render (()=> <SideBar />, document.getElementById("sidebarMenu")! )
 render(() => <Router><App /></Router>, document.getElementById("app")!);
+// render (()=> <SideBar />, document.getElementById("sidebarMenu")! )
+

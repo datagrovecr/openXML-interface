@@ -13,3 +13,8 @@
 
 Border for file input box
  border-2 border-emerald-500 dark:border-green-500 rounded-lg m-3 container mx-auto px-10 max-w-max  max-h-screen sm:max-w-max 
+
+Convert button structure
+<div class="flex flex-row w-full m-2">
+  <div class="flex-1"></div><button class="bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded-full content-center space-x-4 space-y-4 sm:content-center">Convert file</button><div class="flex-1"></div>
+</div>
