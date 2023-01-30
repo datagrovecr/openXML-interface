@@ -2,8 +2,11 @@ import './index.css'
 import { createSignal, Component, JSXElement } from 'solid-js'
 import { render } from 'solid-js/web'
 import { A, Routes, Route, Router } from "@solidjs/router"
-import { Icon } from "solid-heroicons";import { Editor } from './editor'
+// import { Icon } from "solid-heroicons";
+import { Editor } from './editor'
 
+// import * as outline from "solid-heroicons/outline";
+// import * as solidMini from "solid-heroicons/solid-mini";
 const Center: Component<{ children: JSXElement }> = (props) => {
   return <div class='flex flex-row'>
     <div class='flex-1' />
@@ -48,18 +51,34 @@ function App() {
 }
 //sideBar menu code
 function SideBar(){
+  //images/menuIcon.png
   return(
-    <div id="sidebarMenu" class="m-0 w-44 max-h-screen bg-white dark:bg-slate-800 text-black dark:text-white flex-col content-center ">
-    <div id="sidebarTop">
-      top 
-    </div>
-    <div id="sidebarMiddle">center</div>
-    <div id="sidebarBottom">bottom</div>
-    </div>
-  );
-
-  
+  <div class="flex">
+  <button class="bg-zinc-900 text-white p-4 rounded" id="toggle-sidebar" onclick={function() {
+        document.getElementById("sidebar").classList.toggle("-translate-x-96");
+      }}>menu
+      <img src="images/menuIcon.png" alt="image" />  
+      </button>
+  <div class="bg-zinc-900 text-white p-4  w-64" id="sidebar">
+    <h1 class="text-2xl font-medium mb-4">File converter</h1>
+    <ul>
+      <li class="mb-2">
+        <a href="#" class="block p-2 hover:bg-gray-800 rounded">Home</a>
+      </li>
+      <li class="mb-2">
+        <a href="#" class="block p-2 hover:bg-gray-800 rounded">About</a>
+      </li>
+      <li class="mb-2">
+        <a href="#" class="block p-2 hover:bg-gray-800 rounded">Services</a>
+      </li>
+      <li class="mb-2">
+        <a href="#" class="block p-2 hover:bg-gray-800 rounded">Contact</a>
+      </li>
+    </ul>
+  </div>
+</div> );
 }
+
 render (()=> <SideBar />, document.getElementById("sidebarMenu")! )
 render(() => <Router><App /></Router>, document.getElementById("app")!);
 // render (()=> <SideBar />, document.getElementById("sidebarMenu")! )
