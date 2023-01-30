@@ -2,7 +2,8 @@ import './index.css'
 import { createSignal, Component, JSXElement } from 'solid-js'
 import { render } from 'solid-js/web'
 import { A, Routes, Route, Router } from "@solidjs/router"
-// import { Icon } from "solid-heroicons";
+ import { Icon } from "solid-heroicons";
+ import { bars_3 } from "solid-heroicons/solid";
 import { Editor } from './editor'
 
 // import * as outline from "solid-heroicons/outline";
@@ -54,10 +55,12 @@ function SideBar(){
   //images/menuIcon.png
   return(
   <div class="flex">
-  <button class="bg-zinc-900 text-white p-4 rounded" id="toggle-sidebar" onclick={function() {
+  <button class="bg-zinc-900 text-white p-4 absolute top-0 left-0" id="toggle-sidebar" onclick={function() {
         document.getElementById("sidebar").classList.toggle("-translate-x-96");
-      }}>menu
-      <img src="images/menuIcon.png" alt="image" />  
+      }}>
+      <Icon path={bars_3} style="width: 24px; color: white" />
+
+      {/* <img src="https://cdn.icon-icons.com/icons2/916/PNG/512/Menu_icon_icon-icons.com_71858.png" alt="image" class='h-10'/>   */}
       </button>
   <div class="bg-zinc-900 text-white p-4  w-64" id="sidebar">
     <h1 class="text-2xl font-medium mb-4">File converter</h1>
