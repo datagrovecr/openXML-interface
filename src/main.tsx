@@ -52,30 +52,28 @@ function App() {
 }
 //sideBar menu code
 function SideBar(){
-  //images/menuIcon.png
   return(
   <div class="flex">
-  <button class="bg-zinc-900 text-white p-4 absolute top-0 left-0" id="toggle-sidebar" onclick={function() {
-        document.getElementById("sidebar").classList.toggle("-translate-x-96");
+  <button class="bg-white dark:bg-zinc-900 text-black dark:text-white p-4 absolute top-0 left-0" id="toggle-sidebar" onclick={function() {
+        document.getElementById("sidebar")?.classList.toggle("-translate-x-96");
       }}>
-      <Icon path={bars_3} style="width: 24px; color: white" />
+      <Icon path={bars_3} style="width: 24px; color:black dark:color: white" />
 
-      {/* <img src="https://cdn.icon-icons.com/icons2/916/PNG/512/Menu_icon_icon-icons.com_71858.png" alt="image" class='h-10'/>   */}
       </button>
-  <div class="bg-zinc-900 text-white p-4  w-64" id="sidebar">
-    <h1 class="text-2xl font-medium mb-4">File converter</h1>
+  <div class="bg-white dark:bg-zinc-900 text-black dark:text-white p-4  w-64" id="sidebar">
+    <h1 class="text-2xl font-medium mb-4 ml-10"> file Converter</h1>
     <ul>
       <li class="mb-2">
-        <a href="#" class="block p-2 hover:bg-gray-800 rounded">Home</a>
+        <a href="#" class="block p-2 dark:hover:bg-gray-800 rounded">Home</a>
       </li>
       <li class="mb-2">
-        <a href="#" class="block p-2 hover:bg-gray-800 rounded">About</a>
+        <a href="#" class="block p-2 dark:hover:bg-gray-800 rounded">About</a>
       </li>
       <li class="mb-2">
-        <a href="#" class="block p-2 hover:bg-gray-800 rounded">Services</a>
+        <a href="#" class="block p-2 dark:hover:bg-gray-800 rounded">Services</a>
       </li>
       <li class="mb-2">
-        <a href="#" class="block p-2 hover:bg-gray-800 rounded">Contact</a>
+        <a href="#" class="block p-2 dark:hover:bg-gray-800 rounded">Contact</a>
       </li>
     </ul>
   </div>
