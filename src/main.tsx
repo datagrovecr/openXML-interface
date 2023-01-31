@@ -3,9 +3,8 @@ import { createSignal, Component, JSXElement } from 'solid-js'
 import { render } from 'solid-js/web'
 import { A, Routes, Route, Router } from "@solidjs/router"
  import { Icon } from "solid-heroicons";
- import { bars_3 } from "solid-heroicons/solid";
+ import { bars_3, bolt, boltSlash } from "solid-heroicons/solid";
 import { Editor } from './editor'
-
 // import * as outline from "solid-heroicons/outline";
 // import * as solidMini from "solid-heroicons/solid-mini";
 const Center: Component<{ children: JSXElement }> = (props) => {
@@ -79,8 +78,32 @@ function SideBar(){
   </div>
 </div> );
 }
+function Toggle (){
+  return(
+    <div>
+      <button onclick={function ()
+      {
+        const onIcon = document.querySelector("light");
+        const offIcon = document.querySelector("dark");
+        
+      }}>
+        <Icon path={bolt} id="light" style="width: 24px; color:black dark:color: white" />
+        <Icon path={boltSlash} id="dark" style="width: 24px; color:black dark:color: white" />
+
+      </button>
+      {/* <script>
+      const userTheme = localStorage.getItem("Theme");
+      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const iconToggle = () => {
+        Icon={}
+          
+      }
+      </script> */}
+    </div>
+  )
+}
 
 render (()=> <SideBar />, document.getElementById("sidebarMenu")! )
 render(() => <Router><App /></Router>, document.getElementById("app")!);
-// render (()=> <SideBar />, document.getElementById("sidebarMenu")! )
+render (()=> <Toggle />, document.getElementById("toggle")! )
 
