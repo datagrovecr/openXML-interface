@@ -3,7 +3,7 @@ import { createSignal, Component, JSXElement } from 'solid-js'
 import { render } from 'solid-js/web'
 import { A, Routes, Route, Router } from "@solidjs/router"
  import { Icon } from "solid-heroicons";
- import { bars_3, bolt, } from "solid-heroicons/solid";
+ import { bars_3, bolt, boltSlash} from "solid-heroicons/solid";
 import { Editor } from './editor'
 // bolt-slash for crossed out bolt icon
 const Center: Component<{ children: JSXElement }> = (props) => {
@@ -50,6 +50,7 @@ function App() {
 }
 //sideBar menu code
 function SideBar(){
+  const [mode,setMode] = createSignal(false)
   return(
   <div class="flex">
   <button class="bg-white dark:bg-zinc-900 text-black dark:text-white p-4 absolute top-0 left-0" id="toggle-sidebar" onclick={function() {
@@ -75,6 +76,7 @@ function SideBar(){
       </li>
       <li>
       <button onclick={function(){
+        setMode(!mode())
               if(document.documentElement.classList.contains("dark")){
                 document.documentElement.classList.remove("dark");
                 localStorage.setItem("theme", "light");
@@ -84,7 +86,7 @@ function SideBar(){
                 localStorage.setItem("theme","dark");
             }
       }}>
-        <Icon path={bolt} id="light" style="width: 24px; color:black dark:color: white" />
+        <Icon path={mode()?bolt:boltSlash} id="light" style="width: 24px; color:black dark:color: white" />
         {/* <Icon path={boltSlash} id="dark" style="width: 24px; color:black dark:color: white" /> */}
       </button>
       </li>
@@ -97,4 +99,3 @@ function SideBar(){
 render (()=> <SideBar />, document.getElementById("sidebarMenu")! )
 render(() => <Router><App /></Router>, document.getElementById("app")!);
 // render (()=> <Toggle />, document.getElementById("toggle")! )
-
