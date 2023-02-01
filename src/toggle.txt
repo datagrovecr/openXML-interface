@@ -1,19 +1,23 @@
-const userTheme = localStorage.getItem("Theme");
+/* const userTheme = localStorage.getItem("theme");
 const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
 const onIcon = document.querySelector("light");
 const offIcon = document.querySelector("dark");
+//change icon
 const iconToggle = () => {
-    onIcon?.classList.toggle("invisible")
-    offIcon?.classList.toggle("invisible")
+    onIcon?.classList.toggle("display-none")
+    offIcon?.classList.toggle("display-none")
 }
 
 const isDark = () => {
     if(userTheme==="dark"|| (!userTheme && systemTheme)){
         document.documentElement.classList.add("dark");
-        offIcon?.classList.add("invisible")
+        offIcon?.classList.add("display-none")
+        return;
+    }else{
+
     }
 };
-
+//check for system theme
 const themeSwitch = () =>{
     if(document.documentElement.classList.contains("dark")){
         document.documentElement.classList.remove("dark");
@@ -21,8 +25,18 @@ const themeSwitch = () =>{
         iconToggle();
         return;
     }else{
-        document.documentElement.classList.add("dark");
+        // document.documentElement.classList.add("dark");
         localStorage.setItem("theme","dark");
         iconToggle()
     }
 };
+//handle click
+export const switchClick = () => {
+    onIcon?.addEventListener("click", ()=>{
+        themeSwitch();
+    })
+    offIcon?.addEventListener("click", ()=>{
+        themeSwitch();
+    })
+}
+isDark(); */

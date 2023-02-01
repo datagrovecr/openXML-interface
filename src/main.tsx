@@ -3,10 +3,9 @@ import { createSignal, Component, JSXElement } from 'solid-js'
 import { render } from 'solid-js/web'
 import { A, Routes, Route, Router } from "@solidjs/router"
  import { Icon } from "solid-heroicons";
- import { bars_3, bolt, boltSlash } from "solid-heroicons/solid";
+ import { bars_3, bolt, } from "solid-heroicons/solid";
 import { Editor } from './editor'
-// import * as outline from "solid-heroicons/outline";
-// import * as solidMini from "solid-heroicons/solid-mini";
+// bolt-slash for crossed out bolt icon
 const Center: Component<{ children: JSXElement }> = (props) => {
   return <div class='flex flex-row'>
     <div class='flex-1' />
@@ -74,36 +73,28 @@ function SideBar(){
       <li class="mb-2">
         <a href="#" class="block p-2 dark:hover:bg-gray-800 rounded">Contact</a>
       </li>
+      <li>
+      <button onclick={function(){
+              if(document.documentElement.classList.contains("dark")){
+                document.documentElement.classList.remove("dark");
+                localStorage.setItem("theme", "light");
+                return;
+            }else{
+                document.documentElement.classList.add("dark");
+                localStorage.setItem("theme","dark");
+            }
+      }}>
+        <Icon path={bolt} id="light" style="width: 24px; color:black dark:color: white" />
+        {/* <Icon path={boltSlash} id="dark" style="width: 24px; color:black dark:color: white" /> */}
+      </button>
+      </li>
     </ul>
   </div>
 </div> );
 }
-function Toggle (){
-  return(
-    <div>
-      <button onclick={function ()
-      {
-        const onIcon = document.querySelector("light");
-        const offIcon = document.querySelector("dark");
-        
-      }}>
-        <Icon path={bolt} id="light" style="width: 24px; color:black dark:color: white" />
-        <Icon path={boltSlash} id="dark" style="width: 24px; color:black dark:color: white" />
 
-      </button>
-      {/* <script>
-      const userTheme = localStorage.getItem("Theme");
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      const iconToggle = () => {
-        Icon={}
-          
-      }
-      </script> */}
-    </div>
-  )
-}
 
 render (()=> <SideBar />, document.getElementById("sidebarMenu")! )
 render(() => <Router><App /></Router>, document.getElementById("app")!);
-render (()=> <Toggle />, document.getElementById("toggle")! )
+// render (()=> <Toggle />, document.getElementById("toggle")! )
 
