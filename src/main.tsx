@@ -3,7 +3,7 @@ import { createSignal, Component, JSXElement } from 'solid-js'
 import { render } from 'solid-js/web'
 import { A, Routes, Route, Router } from "@solidjs/router"
  import { Icon } from "solid-heroicons";
- import { bars_3, bolt, boltSlash} from "solid-heroicons/solid";
+ import { bars_3, sun, moon} from "solid-heroicons/solid";
 import { Editor } from './editor'
 // bolt-slash for crossed out bolt icon
 const Center: Component<{ children: JSXElement }> = (props) => {
@@ -61,18 +61,18 @@ function SideBar(){
       </button>
   <div class="bg-white dark:bg-zinc-900 text-black dark:text-white p-4  w-64" id="sidebar">
     <h1 class="text-2xl font-medium mb-4 ml-10"> file Converter</h1>
-    <ul>
+    <ul class='absolute'>
       <li class="mb-2">
-        <a href="#" class="block p-2 dark:hover:bg-gray-800 rounded">Home</a>
+        <a href="#" class="block p-2 hover:bg-green-200 dark:hover:bg-gray-800 rounded">Upload File</a>
       </li>
       <li class="mb-2">
-        <a href="#" class="block p-2 dark:hover:bg-gray-800 rounded">About</a>
+        <a href="#" class="block p-2 hover:bg-green-200 dark:hover:bg-gray-800 rounded">Download FIle</a>
       </li>
       <li class="mb-2">
-        <a href="#" class="block p-2 dark:hover:bg-gray-800 rounded">Services</a>
+        <a href="#" class="block p-2 hover:bg-green-200 dark:hover:bg-gray-800 rounded">Translate</a>
       </li>
       <li class="mb-2">
-        <a href="#" class="block p-2 dark:hover:bg-gray-800 rounded">Contact</a>
+        <a href="#" class="block p-2 hover:bg-green-200 dark:hover:bg-gray-800 rounded">Contact</a>
       </li>
       <li>
       <button onclick={function(){
@@ -86,8 +86,7 @@ function SideBar(){
                 localStorage.setItem("theme","dark");
             }
       }}>
-        <Icon path={mode()?bolt:boltSlash} id="light" style="width: 24px; color:black dark:color: white" />
-        {/* <Icon path={boltSlash} id="dark" style="width: 24px; color:black dark:color: white" /> */}
+        <Icon path={mode()?sun:moon} id="light" style="width: 24px; color:black dark:color: white" />
       </button>
       </li>
     </ul>
