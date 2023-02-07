@@ -15,7 +15,7 @@
 
     <main>
       <div id="sidebarMenu" ></div> 
-      <div class="text-black dark:text-white dark:bg-slate-900 font-mono  rounded-lg m-2 p-4 container mx-auto px-10 max-w-max">
+      <div class="text-black dark:text-white dark:bg-slate-900 font-mono border-2 border-green-600 rounded-lg m-2 p-4 container mx-auto px-10 max-w-max">
         <h1 class="p-2 font-mono text-3xl text-black dark:text-white dark:bg-slate-800 mx-auto container text-center sm:text-center sm:shrink-0">Markdown converter</h1>
         <div id="inputs" class="text-white font-mono sm:">
           <div class="flex flex-row w-full m-2">
@@ -23,10 +23,10 @@
             <div class="flex-1"></div><label for="docxFile" class=" bg-green-600 hover:bg-green-700 text-white border font-bold py-2 px-4 rounded-full content-center space-x-4 space-y-4 sm:shrink-0">Select a File</label><div class="flex-1"></div>
           </div>
 		      </div>
-        
+        <div id="app">            
+        </div>
       </div>
-      <div id="app" class="text-black dark:text-white dark:bg-slate-900 font-mono border-2 border-green-600 rounded-lg m-2 p-4 container mx-auto px-10 max-w-max">            
-      </div>
+      
       </div>
     </main>    
     <script type="module" src="/src/main.tsx"></script>
