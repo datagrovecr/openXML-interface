@@ -15,21 +15,22 @@ const Center: Component<{ children: JSXElement }> = (props) => {
 }
 
 const Home = () => {
-  const [count, setCount] = createSignal(1)
+  // const [count, setCount] = createSignal(1)
   return <>
     <Center>
 
-      <div><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => setCount(count() + 1)}>+</button>  Counter: {count} Welcome to the DataGrove file converter</div>
+      <div>
+       Welcome to the DataGrove file converter</div>
     </Center>
   </>
 }
 const About = () => {
   return <Center>
-    <div class='m-2 p-2 rounded-md bg-white text-black' >Descriptions, what is markdown, why use it, is the converter secure, etc.</div>
+    <div class='m-2 p-2 rounded-md bg-white dark:bg-slate-900 text-black dark:text-white' >Descriptions, what is markdown, why use it, is the converter secure, etc.</div>
   </Center>
 }
 const EditorPage = () => {
-  return  <div class='m-2 p-2 rounded-md bg-white dark:bg-black text-black dark:text-white max-h-screen sm:max-h-screen' ><Editor/></div>
+  return  <div class='m-2 p-2 rounded-md bg-white dark:bg-slate-900 text-black dark:text-white max-h-screen sm:max-h-screen' ><Editor/></div>
 }
 
 
@@ -54,13 +55,14 @@ function SideBar(){
   return(
   <div class="flex">
   <button class="bg-white dark:bg-zinc-900 text-black dark:text-white p-4 absolute top-0 left-0" onclick={function() {
-        document.getElementById("sidebar")?.classList.toggle("invisible");
+        const menu = document.getElementById("sidebar");
+        menu?.classList.toggle("invisible");
       }}>
       <Icon path={bars_3} style="width: 24px; color:black dark:color: white" />
 
       </button>
-  <div class="bg-white dark:bg-zinc-900 text-black dark:text-white p-4  w-full h-full" id="sidebar">
-    <h1 class="text-2xl font-medium mb-4 ml-10"> file Converter</h1>
+  <div class="bg-white dark:bg-zinc-900 text-black dark:text-white p-4  w-full h-full sm:shrink-0" id="sidebar">
+    <h1 class="text-2xl font-medium mb-4 ml-10">file Converter</h1>
     <ul class='absolute bg-slate-300 rounded dark:bg-slate-700'>
       <li class="mb-2">
         <a href="#" class="block p-2 hover:bg-slate-200 dark:hover:bg-slate-500 rounded">Upload File</a>
@@ -68,33 +70,38 @@ function SideBar(){
       <li class="mb-2">
         <a href="#" class="block p-2 hover:bg-slate-200 dark:hover:bg-slate-500 rounded">Download FIle</a>
       </li>
-      <li class="mb-2">
-        <a href="#" class="block p-2 hover:bg-slate-200 dark:hover:bg-slate-500 rounded">Translate</a>
-      </li>
-      <li class="mb-2">
-        <a href="#" class="block p-2 hover:bg-slate-200 dark:hover:bg-slate-500 rounded">Contact</a>
-      </li>
       <li>
-      <button onclick={function(){
+      <button onclick={
+        function(){
         setMode(!mode())
-              if(document.documentElement.classList.contains("dark")){
-                document.documentElement.classList.remove("dark");
-                localStorage.setItem("theme", "light");
-                return;
-            }else{
-                document.documentElement.classList.add("dark");
-                localStorage.setItem("theme","dark");
-            }
+        const userTheme = localStorage.getItem("theme");
+        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if(userTheme==="dark"|| (!userTheme && systemTheme)){
+          document.documentElement.classList.add("dark");
+          themeToggle();
+          return;
+      }else{
+        themeToggle();
+      }
+      function themeToggle(){
+        if(document.documentElement.classList.contains("dark")){
+          document.documentElement.classList.remove("dark");
+          localStorage.setItem("theme", "light");
+          return;
+      }else{
+          document.documentElement.classList.add("dark");
+          localStorage.setItem("theme","dark");
+      }
+      }
       }}>
-        <Icon path={mode()?sun:moon} id="light" style="width: 24px; color:black dark:color: white" />
+        <Icon path={mode()?sun:moon} id="light" style="width: 24px; color:black dark:color: white hover:bg-slate-500" />
       </button>
       </li>
     </ul>
   </div>
 </div> );
 }
-
-
+  
 render (()=> <SideBar />, document.getElementById("sidebarMenu")! )
 render(() => <Router><App /></Router>, document.getElementById("app")!);
 // render (()=> <Toggle />, document.getElementById("toggle")! )
