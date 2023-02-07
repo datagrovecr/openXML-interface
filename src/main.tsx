@@ -53,26 +53,26 @@ function SideBar(){
   const [mode,setMode] = createSignal(false)
   return(
   <div class="flex">
-  <button class="bg-white dark:bg-zinc-900 text-black dark:text-white p-4 absolute top-0 left-0" id="toggle-sidebar" onclick={function() {
-        document.getElementById("sidebar")?.classList.toggle("-translate-x-96");
+  <button class="bg-white dark:bg-zinc-900 text-black dark:text-white p-4 absolute top-0 left-0" onclick={function() {
+        document.getElementById("sidebar")?.classList.toggle("invisible");
       }}>
       <Icon path={bars_3} style="width: 24px; color:black dark:color: white" />
 
       </button>
-  <div class="bg-white dark:bg-zinc-900 text-black dark:text-white p-4  w-64" id="sidebar">
+  <div class="bg-white dark:bg-zinc-900 text-black dark:text-white p-4  w-full h-full" id="sidebar">
     <h1 class="text-2xl font-medium mb-4 ml-10"> file Converter</h1>
-    <ul class='absolute'>
+    <ul class='absolute bg-slate-300 rounded dark:bg-slate-700'>
       <li class="mb-2">
-        <a href="#" class="block p-2 hover:bg-green-200 dark:hover:bg-gray-800 rounded">Upload File</a>
+        <a href="#" class="block p-2 hover:bg-slate-200 dark:hover:bg-slate-500 rounded">Upload File</a>
       </li>
       <li class="mb-2">
-        <a href="#" class="block p-2 hover:bg-green-200 dark:hover:bg-gray-800 rounded">Download FIle</a>
+        <a href="#" class="block p-2 hover:bg-slate-200 dark:hover:bg-slate-500 rounded">Download FIle</a>
       </li>
       <li class="mb-2">
-        <a href="#" class="block p-2 hover:bg-green-200 dark:hover:bg-gray-800 rounded">Translate</a>
+        <a href="#" class="block p-2 hover:bg-slate-200 dark:hover:bg-slate-500 rounded">Translate</a>
       </li>
       <li class="mb-2">
-        <a href="#" class="block p-2 hover:bg-green-200 dark:hover:bg-gray-800 rounded">Contact</a>
+        <a href="#" class="block p-2 hover:bg-slate-200 dark:hover:bg-slate-500 rounded">Contact</a>
       </li>
       <li>
       <button onclick={function(){
