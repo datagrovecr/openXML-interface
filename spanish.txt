@@ -32,3 +32,9 @@
 </body>
 
 </html>
+
+menu
+subir archivo 
+descargar archivo
+icono tema
+icono traducir pos. temporal.

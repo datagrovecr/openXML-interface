@@ -61,14 +61,14 @@ function SideBar(){
       <Icon path={bars_3} style="width: 24px; color:black dark:color: white" />
 
       </button>
-  <div class="bg-white dark:bg-zinc-900 text-black dark:text-white p-4  w-full h-full sm:shrink-0" id="sidebar">
+  <div class="bg-white dark:bg-black text-black dark:text-white p-4  w-full h-full sm:shrink-0" id="sidebar">
     <h1 class="text-2xl font-medium mb-4 ml-10">file Converter</h1>
     <ul class='absolute bg-slate-300 rounded dark:bg-slate-700'>
       <li class="mb-2">
         <a href="#" class="block p-2 hover:bg-slate-200 dark:hover:bg-slate-500 rounded">Upload File</a>
       </li>
       <li class="mb-2">
-        <a href="#" class="block p-2 hover:bg-slate-200 dark:hover:bg-slate-500 rounded">Download FIle</a>
+        <a href="#" class="block p-2 hover:bg-slate-200 dark:hover:bg-slate-500 rounded">Download File</a>
       </li>
       <li>
       <button onclick={
@@ -96,6 +96,10 @@ function SideBar(){
       }}>
         <Icon path={mode()?sun:moon} id="light" style="width: 24px; color:black dark:color: white hover:bg-slate-500" />
       </button>
+      </li>
+      <li>
+        <a href="#" lang='english'>EN</a>
+        <a href="#" lang='spanish'>SP</a>
       </li>
     </ul>
   </div>
