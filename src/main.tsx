@@ -65,10 +65,10 @@ function SideBar(){
     <h1 class="text-2xl font-medium mb-4 ml-10">file Converter</h1>
     <ul class='absolute bg-slate-300 rounded dark:bg-slate-700'>
       <li class="mb-2">
-        <a href="#" class="block p-2 hover:bg-slate-200 dark:hover:bg-slate-500 rounded">Upload File</a>
+        <a id='upload' href="#" class="block p-2 hover:bg-slate-200 dark:hover:bg-slate-500 rounded">Upload File</a>
       </li>
       <li class="mb-2">
-        <a href="#" class="block p-2 hover:bg-slate-200 dark:hover:bg-slate-500 rounded">Download File</a>
+        <a id='download' href="#" class="block p-2 hover:bg-slate-200 dark:hover:bg-slate-500 rounded">Download File</a>
       </li>
       <li>
       <button onclick={
@@ -97,15 +97,54 @@ function SideBar(){
         <Icon path={mode()?sun:moon} id="light" style="width: 24px; color:black dark:color: white hover:bg-slate-500" />
       </button>
       </li>
-      <li>
-        <a href="#" lang='english'>EN</a>
-        <a href="#" lang='spanish'>SP</a>
-      </li>
     </ul>
   </div>
 </div> );
 }
-  
+// const MultiLang = () => {
+//   return(
+//     <div id='langs' class='absolute top-0 right-0 text-black dark:text-white'>
+      
+//       <a href="#" lang='english'>ENG</a>
+//       <a href="#" lang='spanish'>SPA</a>
+//     </div>
+//    ); function langs (){
+//      let btnLang = document.querySelector('langs'),
+//      link = document.querySelectorAll('a'),
+//      download = document.getElementById('download')!,
+//      upload = document.getElementById('upload')!,
+//      title = document.getElementById('title')!,
+//      convertBtn = document.getElementById('convertBtn')!;
+//      let data = {
+//       spanish : {
+//         title: 'Convertidor de Archivos',
+//         upload: 'Subir Archivo',
+//         download: 'Descargar Archivo',
+//         convertBtn: 'Convertir Archivo'
+//       },
+//       english : {
+//         title : 'File converter',
+//         upload: 'Upload file',
+//         download: 'Download File',
+//         convertBtn: 'Convert file'
+//       }
+//      }
+//      link.forEach(el => {
+//       el.addEventListener('click', ()=>{
+//         let attr = el.getAttribute('lang')
+//         title.textContent = data[attr].title
+//         upload.textContent = data[attr].upload
+//         download.textContent = data[attr].download
+//         convertBtn.textContent = data[attr].convertBtn
+//       },
+      
+//     });
+//     }
+
+//    )
+
+// }
+render (()=> <MultiLang />, document.getElementById("lang")! )
 render (()=> <SideBar />, document.getElementById("sidebarMenu")! )
+
 render(() => <Router><App /></Router>, document.getElementById("app")!);
-// render (()=> <Toggle />, document.getElementById("toggle")! )
