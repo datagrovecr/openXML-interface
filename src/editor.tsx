@@ -66,7 +66,7 @@ export const minimalSetup: Extension = (() => [
 ])()
 
 let startState = EditorState.create({
-    doc: "Hello World",
+    doc: "Type Here!",
     extensions: [
         basicSetup,
         markdown(),
@@ -86,3 +86,4 @@ export const Editor : Component<{ }> = () => {
 
     return <div ref={div!}/>
 }
+//Current idea create variable that holds uploaded document if it doesn't already exist and have it show

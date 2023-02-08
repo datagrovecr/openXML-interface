@@ -5,7 +5,7 @@ import { A, Routes, Route, Router } from "@solidjs/router"
  import { Icon } from "solid-heroicons";
  import { bars_3, sun, moon} from "solid-heroicons/solid";
 import { Editor } from './editor'
-// bolt-slash for crossed out bolt icon
+// bolt-slash for crossed out bolt icon. xMark X -> X icon
 const Center: Component<{ children: JSXElement }> = (props) => {
   return <div class='flex flex-row'>
     <div class='flex-1' />
@@ -30,7 +30,10 @@ const About = () => {
   </Center>
 }
 const EditorPage = () => {
-  return  <div class='m-2 p-2 rounded-md bg-white dark:bg-slate-900 text-black dark:text-white max-h-screen sm:max-h-screen' ><Editor/></div>
+  return  <div class='m-2 p-2 rounded-md bg-white dark:bg-slate-900 text-black dark:text-white max-h-screen sm:max-h-screen' >
+    <Editor/>
+  
+  </div>
 }
 
 
@@ -52,17 +55,20 @@ function App() {
 //sideBar menu code
 function SideBar(){
   const [mode,setMode] = createSignal(false)
-  return(
-  <div class="flex">
+  return  <div class='flex-1'>
+    
+    <div class="flex-1">
   <button class="bg-white dark:bg-zinc-900 text-black dark:text-white p-4 absolute top-0 left-0" onclick={function() {
         const menu = document.getElementById("sidebar");
-        menu?.classList.toggle("invisible");
+        const header = document.getElementById('appheader');
+        menu?.classList.toggle("invisible")
+        header?.classList.toggle("invisible")
       }}>
       <Icon path={bars_3} style="width: 24px; color:black dark:color: white" />
 
       </button>
-  <div class="bg-white dark:bg-black text-black dark:text-white p-4  w-full h-full sm:shrink-0" id="sidebar">
-    <h1 class="text-2xl font-medium mb-4 ml-10">file Converter</h1>
+  <div class="bg-white dark:bg-black text-black dark:text-white p-4  w-full h-full  sm:invisible" id="sidebar">
+    <h1 class=' mb-4 ml-10 invisible'>this is empty space</h1>
     <ul class='absolute bg-slate-300 rounded dark:bg-slate-700'>
       <li class="mb-2">
         <a id='upload' href="#" class="block p-2 hover:bg-slate-200 dark:hover:bg-slate-500 rounded">Upload File</a>
@@ -95,12 +101,34 @@ function SideBar(){
       }
       }}>
         <Icon path={mode()?sun:moon} id="light" style="width: 24px; color:black dark:color: white hover:bg-slate-500" />
-      </button>
-      </li>
-    </ul>
-  </div>
-</div> );
+        </  button>
+        </li>
+      </ul>
+    </div>
+  </div> 
+      <div id='appHeader' class='flex-1 p-6 absolute top-0 left-12'>
+        File converter
+      </div>
+</div> 
 }
+//const MultiLang = () =>{
+//   const eng = document.getElementById('english-btn'),
+//   spa = document.getElementById('spanish-btn');
+//   eng?.addEventListener('click', () => {
+//     document.documentElement.lang = 'en';
+//   });
+//   spa?.addEventListener('click', () => {
+//     document.documentElement.lang = 'es';
+//   });
+//   return (
+//   <div>
+//     <button id="english-btn">English</button>
+//     <button id="spanish-btn">Español</button>
+//   </div>
+
+
+//   )
+//}
 // const MultiLang = () => {
 //   return(
 //     <div id='langs' class='absolute top-0 right-0 text-black dark:text-white'>
@@ -144,7 +172,7 @@ function SideBar(){
 //    )
 
 // }
-render (()=> <MultiLang />, document.getElementById("lang")! )
-render (()=> <SideBar />, document.getElementById("sidebarMenu")! )
 
+render (()=> <SideBar />, document.getElementById("sidebarMenu")! )
+// render (()=> <MultiLang />, document.getElementById("lang")! )
 render(() => <Router><App /></Router>, document.getElementById("app")!);
