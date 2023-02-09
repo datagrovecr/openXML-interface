@@ -155,7 +155,7 @@ const MultiLang = () => {
           title: 'Convertidor de Archivos',
           upload: 'Subir Archivo',
           download: 'Descargar Archivo',
-          convertBtn: 'Convertir Archivo'
+          convertBtn: 'Selección de Archivo'
         }
       );
       data.set(
@@ -163,7 +163,7 @@ const MultiLang = () => {
           title : 'File converter',
           upload: 'Upload file',
           download: 'Download File',
-          convertBtn: 'Convert file'
+          convertBtn: 'Select file'
   
         });
 
