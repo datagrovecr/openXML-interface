@@ -179,9 +179,8 @@ const MultiLang = () => {
   return(
     <div id='langs' class='absolute top-0 right-0 text-black dark:text-white'>
       
-      <a href="#" lang='english'>ENG</a>
-      <button id='btnLang' onclick={translate}>ENG</button>
-      <a href="#" lang='spanish'>SPA</a>
+      <button class='p-2' id='btnLang' onclick={translate}>ENG</button>
+      <button class='pr-2' id='btnLang' onclick={translate}>SPA</button>
     </div>
     )
 }
