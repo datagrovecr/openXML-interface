@@ -67,7 +67,7 @@ function SideBar(){
       <Icon path={bars_3} style="width: 24px; color:black dark:color: white" />
 
       </button>
-  <div class="bg-white dark:bg-black text-black dark:text-white p-4  w-full h-full  sm:invisible" id="sidebar">
+  <div class="bg-white dark:bg-black text-black dark:text-white p-4  w-full h-full" id="sidebar">
     <h1 class=' mb-4 ml-10 invisible'>this is empty space</h1>
     <ul class='absolute bg-slate-300 rounded dark:bg-slate-700'>
       <li class="mb-2">
@@ -106,12 +106,12 @@ function SideBar(){
       </ul>
     </div>
   </div> 
-      <div id='appHeader' class='flex-1 p-6 absolute top-0 left-12'>
+      <div id='title' class='flex-1 p-6 absolute top-0 left-12'>
         File converter
       </div>
 </div> 
 }
-//const MultiLang = () =>{
+// const MultiLang = () =>{
 //   const eng = document.getElementById('english-btn'),
 //   spa = document.getElementById('spanish-btn');
 //   eng?.addEventListener('click', () => {
@@ -128,51 +128,65 @@ function SideBar(){
 
 
 //   )
-//}
-// const MultiLang = () => {
-//   return(
-//     <div id='langs' class='absolute top-0 right-0 text-black dark:text-white'>
-      
-//       <a href="#" lang='english'>ENG</a>
-//       <a href="#" lang='spanish'>SPA</a>
-//     </div>
-//    ); function langs (){
-//      let btnLang = document.querySelector('langs'),
-//      link = document.querySelectorAll('a'),
-//      download = document.getElementById('download')!,
-//      upload = document.getElementById('upload')!,
-//      title = document.getElementById('title')!,
-//      convertBtn = document.getElementById('convertBtn')!;
-//      let data = {
-//       spanish : {
-//         title: 'Convertidor de Archivos',
-//         upload: 'Subir Archivo',
-//         download: 'Descargar Archivo',
-//         convertBtn: 'Convertir Archivo'
-//       },
-//       english : {
-//         title : 'File converter',
-//         upload: 'Upload file',
-//         download: 'Download File',
-//         convertBtn: 'Convert file'
-//       }
-//      }
-//      link.forEach(el => {
-//       el.addEventListener('click', ()=>{
-//         let attr = el.getAttribute('lang')
-//         title.textContent = data[attr].title
-//         upload.textContent = data[attr].upload
-//         download.textContent = data[attr].download
-//         convertBtn.textContent = data[attr].convertBtn
-//       },
-      
-//     });
-//     }
-
-//    )
-
 // }
+const MultiLang = () => {
+  const translate = function langs (){
+    let btnLang = document.querySelector('langs'),
+    link = document.querySelectorAll('a'),
+    download = document.getElementById('download')!,
+    upload = document.getElementById('upload')!,
+    title = document.getElementById('title')!,
+    convertBtn = document.getElementById('convertBtn')!;
+
+    interface LanguageData {
+      title: string;
+      upload: string;
+      download: string;
+      convertBtn: string;
+    }
+
+    const data = new Map<string, LanguageData>();
+   
+    link.forEach(el => {
+     el.addEventListener('click', ()=>{
+       let attr:string = el.getAttribute('lang') ?? 'english';
+       data.set(
+        "spanish" , {
+          title: 'Convertidor de Archivos',
+          upload: 'Subir Archivo',
+          download: 'Descargar Archivo',
+          convertBtn: 'Convertir Archivo'
+        }
+      );
+      data.set(
+        "english", {
+          title : 'File converter',
+          upload: 'Upload file',
+          download: 'Download File',
+          convertBtn: 'Convert file'
+  
+        });
+
+       title.textContent = data.get(attr)?.title ?? 'File converter'
+       upload.textContent = data.get(attr)?.upload ?? 'Upload file'
+       download.textContent = data.get(attr)?.download ?? 'Download file'
+       convertBtn.textContent = data.get(attr)?.convertBtn ?? 'Convert file'
+     })
+     
+    });
+
+  }  
+  return(
+    <div id='langs' class='absolute top-0 right-0 text-black dark:text-white'>
+      
+      <a href="#" lang='english'>ENG</a>
+      <button id='btnLang' onclick={translate}>ENG</button>
+      <a href="#" lang='spanish'>SPA</a>
+    </div>
+    )
+}
+
 
 render (()=> <SideBar />, document.getElementById("sidebarMenu")! )
-// render (()=> <MultiLang />, document.getElementById("lang")! )
+render (()=> <MultiLang />, document.getElementById("lang")! )
 render(() => <Router><App /></Router>, document.getElementById("app")!);
