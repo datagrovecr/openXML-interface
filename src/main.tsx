@@ -106,7 +106,7 @@ function SideBar(){
       </ul>
     </div>
   </div> 
-      <div id='title' class='flex-1 p-6 absolute top-0 left-12'>
+      <div id='title2' class='flex-1 p-6 absolute top-0 left-12'>
         File converter
       </div>
 </div> 
@@ -131,8 +131,9 @@ function SideBar(){
 // }
 const MultiLang = () => {
   const translate = function langs (){
-    let btnLang = document.querySelector('langs'),
-    link = document.querySelectorAll('a'),
+    
+    //let btnLang = document.querySelector('langs'),
+    let link = document.querySelectorAll('a'),
     download = document.getElementById('download')!,
     upload = document.getElementById('upload')!,
     title = document.getElementById('title')!,
@@ -146,31 +147,35 @@ const MultiLang = () => {
     }
 
     const data = new Map<string, LanguageData>();
-   
+    data.set(
+      "spanish" , {
+        title: 'Convertidor de Archivos',
+        upload: 'Subir Archivo',
+        download: 'Descargar Archivo',
+        convertBtn: 'Selección de Archivo'
+      }
+    );
+    data.set(
+      "english", {
+        title : 'File converter',
+        upload: 'Upload file',
+        download: 'Download File',
+        convertBtn: 'Select file'
+
+      });
+
     link.forEach(el => {
+ 
      el.addEventListener('click', ()=>{
-       let attr:string = el.getAttribute('lang') ?? 'english';
-       data.set(
-        "spanish" , {
-          title: 'Convertidor de Archivos',
-          upload: 'Subir Archivo',
-          download: 'Descargar Archivo',
-          convertBtn: 'Selección de Archivo'
-        }
-      );
-      data.set(
-        "english", {
-          title : 'File converter',
-          upload: 'Upload file',
-          download: 'Download File',
-          convertBtn: 'Select file'
-  
-        });
+
+       let attr: string = el.getAttribute('lang') ?? 'english';
+     
 
        title.textContent = data.get(attr)?.title ?? 'File converter'
        upload.textContent = data.get(attr)?.upload ?? 'Upload file'
        download.textContent = data.get(attr)?.download ?? 'Download file'
        convertBtn.textContent = data.get(attr)?.convertBtn ?? 'Convert file'
+       console.log('done ')
      })
      
     });
