@@ -132,8 +132,8 @@ function SideBar(){
 const MultiLang = () => {
   const translate = function langs (){
     
-    //let btnLang = document.querySelector('langs'),
-    let link = document.querySelectorAll('a'),
+    let btnLang = document.querySelector('langs'),
+     link = document.querySelectorAll('a'),
     download = document.getElementById('download')!,
     upload = document.getElementById('upload')!,
     title = document.getElementById('title')!,
@@ -168,14 +168,13 @@ const MultiLang = () => {
  
      el.addEventListener('click', ()=>{
 
-       let attr: string = el.getAttribute('lang') ?? 'english';
+       let attr: string = el.getAttribute('lang') ?? 'spanish';
      
 
        title.textContent = data.get(attr)?.title ?? 'File converter'
        upload.textContent = data.get(attr)?.upload ?? 'Upload file'
        download.textContent = data.get(attr)?.download ?? 'Download file'
        convertBtn.textContent = data.get(attr)?.convertBtn ?? 'Convert file'
-       console.log('done ')
      })
      
     });
@@ -184,8 +183,8 @@ const MultiLang = () => {
   return(
     <div id='langs' class='absolute top-0 right-0 text-black dark:text-white'>
       
-      <button class='p-2' id='btnLang' onclick={translate}>ENG</button>
-      <button class='pr-2' id='btnLang' onclick={translate}>SPA</button>
+      <a class='p-2' id='btnLang' lang='english' onclick={translate}>ENG</a>
+      <a class='pr-2' id='btnLang' lang='spanish' onclick={translate}>SPA</a>
     </div>
     )
 }
