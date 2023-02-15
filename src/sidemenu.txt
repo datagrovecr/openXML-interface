@@ -402,3 +402,5 @@ function sidebarHandler(flag) {
         openSidebar.classList.remove("hidden");
     }   
 }
+ <Icon path={bars_3} style="width: 24px; color:black dark:color: white" class={`absolute -right-3 top-9 bg-white rounded-lg cursor-pointer ${!open && "rotate-90"}`} onclick={
+      () => setOpen(!open)}/>
