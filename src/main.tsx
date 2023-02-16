@@ -1,10 +1,11 @@
 import './index.css'
-import { createSignal, Component, JSXElement } from 'solid-js'
+import { createSignal, Component, JSXElement, For } from 'solid-js'
 import { render } from 'solid-js/web'
 import { A, Routes, Route, Router } from "@solidjs/router"
  import { Icon } from "solid-heroicons";
  import { bars_3, sun, moon} from "solid-heroicons/solid";
 import { Editor } from './editor'
+
 // bolt-slash for crossed out bolt icon. xMark X -> X icon
 const Center: Component<{ children: JSXElement }> = (props) => {
   return <div class='flex flex-row'>
@@ -56,30 +57,47 @@ function App() {
 function SideBar2(){
   const [mode,setMode] = createSignal(false)
   const [open, setOpen] = createSignal(false)
-  // const [items, setItems] = createSignal([
-  //   {id: 'title', name: 'File Converter'},
-  //   {id:'upload', name:'Upload File'},
-  //   {id: 'download', name: 'Download file'}
-  //    ]);
-  return (
+  const [clicked, setClicked] = createSignal(false)
+  const [items, setItems] = createSignal([
+    {id: 'title', name: 'File Converter'},
+    {id:'upload', name:'Upload File'},
+    {id: 'download', name: 'Download file'}
+     ]);
+     //set to empty to hide contents of menu and load them onclick of menu button
+     setItems([])
+   return (
   <div class='flex'>
 
-    <div class={`bg-slate-300 dark:bg-slate-600 text-black dark:text-white h-screen p-5 ${open() ? "w-72": "w-20"} duration-300 absolute`}>
+    <div class={`bg-white dark:bg-slate-600 text-black dark:text-white h-screen p-5 ${open() ? "w-72 bg-gray-200": "w-20 bg-white"} duration-300 absolute`}>
       
       <button onclick={()=>{
+
+        console.log("Test for tech talk!")
         setOpen(!open())
+        
+        if (items().length>1) {
+          setItems([])
+
+        }else{
+          setItems([
+            {id: 'title', name: 'File Converter'},
+            {id:'upload', name:'Upload File'},
+            {id: 'download', name: 'Download file'}
+             ])
+
+        }
       }}>
       <Icon path={bars_3} style="width: 24px; color:black dark:color: white" />
       </button>
       <div>
-        {/* <For each={items()}>{(items, i)=>
-        <ul>
+        <For each={items()}>{(items)=>
+        <ul class='p-2'>
           <li>
-            {i() +1}: {items.name}
+             {items.name}
           </li>
         </ul>
         }
-        </For> */}
+        </For>
       </div>
     </div>
   </div>)
@@ -130,9 +148,10 @@ const MultiLang = () => {
      
 
        title.textContent = data.get(attr)?.title ?? 'File converter'
+       convertBtn.textContent = data.get(attr)?.convertBtn ?? 'Convert file'
        upload.textContent = data.get(attr)?.upload ?? 'Upload file'
        download.textContent = data.get(attr)?.download ?? 'Download file'
-       convertBtn.textContent = data.get(attr)?.convertBtn ?? 'Convert file'
+      //  convertBtn.textContent = data.get(attr)?.convertBtn ?? 'Convert file'
      })
      
     });
