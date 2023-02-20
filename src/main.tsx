@@ -1,12 +1,13 @@
+//import 'solid-devtools';
 import './index.css'
 import { createSignal, Component, JSXElement, For } from 'solid-js'
 import { render } from 'solid-js/web'
 import { A, Routes, Route, Router } from "@solidjs/router"
  import { Icon } from "solid-heroicons";
- import { bars_3, sun, moon} from "solid-heroicons/solid";
+ import { bars_3} from "solid-heroicons/solid";
 import { Editor } from './editor'
 
-// bolt-slash for crossed out bolt icon. xMark X -> X icon
+// bolt-slash for crossed out bolt icon. xMark X -> X icon, sun, moon
 const Center: Component<{ children: JSXElement }> = (props) => {
   return <div class='flex flex-row'>
     <div class='flex-1' />
@@ -55,9 +56,9 @@ function App() {
 }
 //sideBar menu code
 function SideBar2(){
-  const [mode,setMode] = createSignal(false)
+  //const [mode,setMode] = createSignal(false)
   const [open, setOpen] = createSignal(false)
-  const [clicked, setClicked] = createSignal(false)
+  //const [clicked, setClicked] = createSignal(false)
   const [items, setItems] = createSignal([
     {id: 'title', name: 'File Converter'},
     {id:'upload', name:'Upload File'},
@@ -108,8 +109,8 @@ function SideBar2(){
 const MultiLang = () => {
   const translate = function langs (){
     
-    let btnLang = document.querySelector('langs'),
-     link = document.querySelectorAll('a'),
+    //let btnLang = document.querySelector('langs'),
+    let link = document.querySelectorAll('a'),
       download = document.getElementById('download')!,
       upload = document.getElementById('upload')!,
      title = document.getElementById('title')!,
@@ -159,9 +160,16 @@ const MultiLang = () => {
   }  
   return(
     <div id='langs' class='absolute top-0 right-0 text-black dark:text-white'>
+      <label for="languages">Translate:</label>
+
+      <select name="langs" id="langs">
+        <option id='btnLang' value="eng" lang='english' onclick={translate}>English </option>
+          
+        <option id='btnLang' value="spa" lang='spanish' onclick={translate}>Español</option>
+      </select>
       
-      <a class='p-2' id='btnLang' lang='english' onclick={translate}>ENG</a>
-      <a class='pr-2' id='btnLang' lang='spanish' onclick={translate}>SPA</a>
+      {/* <a class='p-2' id='btnLang' lang='english' onclick={translate}>ENG</a>
+      <a class='pr-2' id='btnLang' lang='spanish' onclick={translate}>SPA</a> */}
     </div>
     )
 }
