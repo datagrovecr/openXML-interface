@@ -7,6 +7,7 @@ import { A, Routes, Route, Router } from "@solidjs/router"
  import { bars_3} from "solid-heroicons/solid";
 import { Editor } from './editor'
 
+
 // bolt-slash for crossed out bolt icon. xMark X -> X icon, sun, moon
 const Center: Component<{ children: JSXElement }> = (props) => {
   return <div class='flex flex-row'>
@@ -31,8 +32,8 @@ const About = () => {
     <div class='m-2 p-2 rounded-md bg-white dark:bg-slate-900 text-black dark:text-white' >Descriptions, what is markdown, why use it, is the converter secure, etc.</div>
   </Center>
 }
-const EditorPage = () => {
-  return  <div class='m-2 p-2 rounded-md bg-white dark:bg-slate-900 text-black dark:text-white max-h-screen sm:max-h-screen' >
+const Preview = () => {
+  return  <div id='preview' class='m-2 p-2 rounded-md bg-white dark:bg-slate-900 text-black dark:text-white max-h-screen sm:max-h-screen' >
     <Editor/>
   
   </div>
@@ -44,13 +45,13 @@ function App() {
     <nav>
       <A class='p-2 hover:text-blue-600 text-blue-700' href="/about">About</A>
       <A class='p-2 hover:text-blue-600 text-blue-700' href="/">Home</A>
-      <A class='p-2 hover:text-blue-600 text-blue-700' href="/editor">Editor</A>
+      <A class='p-2 hover:text-blue-600 text-blue-700' href="/preview">Preview</A>
     </nav>
 
     <Routes>
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
-      <Route path="/editor" component={EditorPage} />
+      <Route path="/preview" component={Preview} />
     </Routes>
   </>
 }

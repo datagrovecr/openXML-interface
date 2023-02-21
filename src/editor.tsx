@@ -66,21 +66,22 @@ export const minimalSetup: Extension = (() => [
 ])()
 
 let startState = EditorState.create({
-    doc: "add backend",
+    doc: "Add preview",
     extensions: [
         basicSetup,
         markdown(),
         keymap.of(defaultKeymap),
     ]
 })
-//startState contains info
+//startState contains info doc: is the placeholder
+
 
 export const Editor : Component<{ }> = () => {
     let div : HTMLDivElement 
     onMount(()=>{
         new EditorView({
             state: startState,
-            parent: div
+            parent: div,
         }
     )})
 

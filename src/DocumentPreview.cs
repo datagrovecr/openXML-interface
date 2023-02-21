@@ -1,0 +1,74 @@
+/*Function to handle preview into codemirror */
+using System;
+using System.IO;
+using System.Runtime.InteropServices.JavaScript;
+using System.Threading.Tasks;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Wordprocessing;
+using docx_lib;
+
+namespace DocumentPreview {
+    public partial class MainTSX
+    {
+        static Controller? controller;
+
+        public static async Task Main()
+        {
+            if (!OperatingSystem.IsBrowser())
+            {
+                throw new PlatformNotSupportedException("This demo is expected to run on browser platform");
+            }
+
+            await JSHost.ImportAsync("todoMVC/store.js", "./store.js");
+            await JSHost.ImportAsync("todoMVC/view.js", "./view.js");
+
+            var store = new Store();
+            var view = new View(new Template());
+            controller = new Controller(store, view);
+            Console.WriteLine("Ready!");
+        }
+
+        [JSExport]
+        public static void OnHashchange(string url)
+        {
+            controller?.SetView(url);
+        }
+
+        [JSExport]
+        //takes docx file and converts it to md
+        public static string openDocxFile(byte[] file)
+        {
+            return convertToMd(file).Result;
+        }
+
+
+
+        public static async Task<string> convertToMd(byte[] file)
+        {
+            string md;
+            var outStream = new MemoryStream();
+
+            using (MemoryStream data = new MemoryStream(file))
+            {
+                await DgDocx.docx_to_md(data, outStream);
+                StreamReader reader = new StreamReader(outStream);
+                outStream.Seek(0, SeekOrigin.Begin);
+                md = reader.ReadToEnd();
+            }
+            return md;
+        }
+
+        //opens md file and converts it to .docx
+        public static void openMdFile(string file)
+        {
+            convertToDocx(file);
+        }
+
+        public static async void convertToDocx(string data)
+        {
+            var outStream = new MemoryStream();
+
+            await DgDocx.md_to_docx(data, outStream);
+        }
+    }
+}
