@@ -66,13 +66,14 @@ export const minimalSetup: Extension = (() => [
 ])()
 
 let startState = EditorState.create({
-    doc: "Type Here!",
+    doc: "add backend",
     extensions: [
         basicSetup,
         markdown(),
         keymap.of(defaultKeymap),
     ]
 })
+//startState contains info
 
 export const Editor : Component<{ }> = () => {
     let div : HTMLDivElement 
