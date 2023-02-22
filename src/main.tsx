@@ -6,7 +6,15 @@ import { A, Routes, Route, Router } from "@solidjs/router"
  import { Icon } from "solid-heroicons";
  import { bars_3, globeAlt} from "solid-heroicons/solid";
 import { Editor } from './editor'
-
+const spanish = {  
+  'title': 'Convertidor de Archivos',
+'upload': 'Subir Archivo',
+'download': 'Descargar Archivo'}
+const english = {
+  'title': 'File converter',
+  'upload': 'Upload file',
+  'download': 'Download File'}
+const [lang, setLang] = createSignal<{[key:string]:string}>(spanish)
 
 // bolt-slash for crossed out bolt icon. xMark X -> X icon, sun, moon
 const Center: Component<{ children: JSXElement }> = (props) => {
@@ -60,13 +68,14 @@ function SideBar2(){
   //const [mode,setMode] = createSignal(false)
   const [open, setOpen] = createSignal(false)
   //const [clicked, setClicked] = createSignal(false)
-  const [items, setItems] = createSignal([
-    {id: 'title', name: 'File Converter'},
-    {id:'upload', name:'Upload File'},
-    {id: 'download', name: 'Download file'}
-     ]);
+  // const [items, setItems] = createSignal([
+  //   {id: 'title', name: 'File Converter'},
+  //   {id:'upload', name:'Upload File'},
+  //   {id: 'download', name: 'Download file'}
+  //    ]);
      //set to empty to hide contents of menu and load them onclick of menu button
-     setItems([])
+     //setItems([])
+     const items = () => ['title', 'upload','download'].map(e => lang()[e])
    return (
   <div class='flex'>
 
@@ -77,25 +86,25 @@ function SideBar2(){
         console.log("Test for tech talk!")
         setOpen(!open())
         
-        if (items().length>1) {
-          setItems([])
+        // if (items().length>1) {
+        //   setItems([])
 
-        }else{
-          setItems([
-            {id: 'title', name: 'File Converter'},
-            {id:'upload', name:'Upload File'},
-            {id: 'download', name: 'Download file'}
-             ])
+        // }else{
+        //   setItems([
+        //     {id: 'title', name: 'File Converter'},
+        //     {id:'upload', name:'Upload File'},
+        //     {id: 'download', name: 'Download file'}
+        //      ])
 
         }
-      }}>
+      }>
       <Icon path={bars_3} style="width: 24px; color:black dark:color: white" />
       </button>
       <div>
         <For each={items()}>{(items)=>
         <ul class='p-2'>
           <li>
-             {items.name}
+             {items}
           </li>
         </ul>
         }
@@ -108,14 +117,22 @@ function SideBar2(){
 
 //Language toggle
 const MultiLang = () => {
+  //const [open, setOpen] = createSignal(false)
   const translate = function langs (){
     
     //let btnLang = document.querySelector('langs'),
-    let link = document.querySelectorAll('a'),
-      download = document.getElementById('download')!,
-      upload = document.getElementById('upload')!,
-     title = document.getElementById('title')!,
-      convertBtn = document.getElementById('convertBtn')!;
+    <For each={langs()}>{(languages)=>
+      <ul class='p-2'>
+        <li>
+           {languages}
+        </li>
+      </ul>
+      }
+      </For>
+    //   download = document.getElementById('download')!,
+    //   upload = document.getElementById('upload')!,
+    //  title = document.getElementById('title')!,
+    //   convertBtn = document.getElementById('convertBtn')!;
 
     interface LanguageData {
       title: string;
@@ -147,12 +164,14 @@ const MultiLang = () => {
      el.addEventListener('click', ()=>{
 
        let attr: string = el.getAttribute('lang') ?? 'spanish';
+        
+       setLang(attr=="english"?english:spanish)
      
 
-       title.textContent = data.get(attr)?.title ?? 'File converter'
-       convertBtn.textContent = data.get(attr)?.convertBtn ?? 'Convert file'
-       upload.textContent = data.get(attr)?.upload ?? 'Upload file'
-       download.textContent = data.get(attr)?.download ?? 'Download file'
+      //  title.textContent = data.get(attr)?.title ?? 'File converter'
+      //  convertBtn.textContent = data.get(attr)?.convertBtn ?? 'Convert file'
+      //  upload.textContent = data.get(attr)?.upload ?? 'Upload file'
+      //  download.textContent = data.get(attr)?.download ?? 'Download file'
       //  convertBtn.textContent = data.get(attr)?.convertBtn ?? 'Convert file'
      })
      
@@ -162,30 +181,17 @@ const MultiLang = () => {
   return(
     <div id='langs' class='absolute top-10 right-2'>
 
-<button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-white bg-gray-400 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="button">Languages</button>
-<div id="dropdown" class="z-10  bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-      <li>
-      <a class='p-2 block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white' id='btnLang' lang='english' onclick={translate}>ENG</a>
-      </li>
-      <li>
-      <a class='pr-2 block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white' id='btnLang' lang='spanish' onclick={translate}>SPA</a>
-      </li>
-    </ul>
-</div>
-
-      {/* <label for="languages"> <Icon path={globeAlt} style="width: 24px; color:black dark:color: white" /></label>
-
-      <select name="langs" id="langs">
-        <option id='btnLang' value="en">
-          <a class='p-2' id='btnLang' lang='english' onclick={translate}>ENG</a>  
-        </option>
-          
-        <option id='btnLang' value="es" lang='spanish' onclick={translate}>Español</option>
-      </select> */}
-      
-      {/* <a class='p-2' id='btnLang' lang='english' onclick={translate}>ENG</a>
-      <a class='pr-2' id='btnLang' lang='spanish' onclick={translate}>SPA</a> */}
+      <button id="dropdownButton"  class="text-white bg-gray-400 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="button">Languages</button>
+      <div id="menu" class={`z-10  bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700`}>
+          <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
+            <li>
+              <a class='p-2 block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white' id='btnLang' lang='english' onclick={translate}>ENG</a>
+            </li>
+            <li>
+              <a class='pr-2 block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white' id='btnLang' lang='spanish' onclick={translate}>SPA</a>
+            </li>
+          </ul>
+      </div>
     </div>
     )
 }
