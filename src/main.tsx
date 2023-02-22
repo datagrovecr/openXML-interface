@@ -4,7 +4,7 @@ import { createSignal, Component, JSXElement, For } from 'solid-js'
 import { render } from 'solid-js/web'
 import { A, Routes, Route, Router } from "@solidjs/router"
  import { Icon } from "solid-heroicons";
- import { bars_3} from "solid-heroicons/solid";
+ import { bars_3, globeAlt} from "solid-heroicons/solid";
 import { Editor } from './editor'
 
 
@@ -160,14 +160,29 @@ const MultiLang = () => {
 
   }  
   return(
-    <div id='langs' class='absolute top-0 right-0 text-black dark:text-white'>
-      <label for="languages">Translate:</label>
+    <div id='langs' class='absolute top-10 right-2'>
+
+<button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-white bg-gray-400 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="button">Languages</button>
+<div id="dropdown" class="z-10  bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+      <li>
+      <a class='p-2 block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white' id='btnLang' lang='english' onclick={translate}>ENG</a>
+      </li>
+      <li>
+      <a class='pr-2 block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white' id='btnLang' lang='spanish' onclick={translate}>SPA</a>
+      </li>
+    </ul>
+</div>
+
+      {/* <label for="languages"> <Icon path={globeAlt} style="width: 24px; color:black dark:color: white" /></label>
 
       <select name="langs" id="langs">
-        <option id='btnLang' value="eng" lang='english' onclick={translate}>English </option>
+        <option id='btnLang' value="en">
+          <a class='p-2' id='btnLang' lang='english' onclick={translate}>ENG</a>  
+        </option>
           
-        <option id='btnLang' value="spa" lang='spanish' onclick={translate}>Español</option>
-      </select>
+        <option id='btnLang' value="es" lang='spanish' onclick={translate}>Español</option>
+      </select> */}
       
       {/* <a class='p-2' id='btnLang' lang='english' onclick={translate}>ENG</a>
       <a class='pr-2' id='btnLang' lang='spanish' onclick={translate}>SPA</a> */}
