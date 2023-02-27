@@ -17,6 +17,7 @@ import { history, historyKeymap } from "@codemirror/commands"
 import { searchKeymap, highlightSelectionMatches } from "@codemirror/search"
 import { autocompletion, completionKeymap, closeBrackets, closeBracketsKeymap } from "@codemirror/autocomplete"
 import { lintKeymap } from "@codemirror/lint"
+import {languages} from "@codemirror/language-data"
 
 
 export const basicSetup: Extension = (() => [
@@ -74,8 +75,12 @@ let startState = EditorState.create({
     ]
 })
 //startState contains info doc: is the placeholder
-
-
+// Using document changes and view.dispatch
+//let changes = []
+view.dispatch({
+    changes: {from: 0, insert: "#!/usr/bin/env node\n"}
+  })
+  
 export const Editor : Component<{ }> = () => {
     let div : HTMLDivElement 
     onMount(()=>{
@@ -88,4 +93,3 @@ export const Editor : Component<{ }> = () => {
 
     return <div ref={div!}/>
 }
-//Current idea create variable that holds uploaded document if it doesn't already exist and have it show
