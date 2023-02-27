@@ -113,15 +113,28 @@ function SideBar2(){
     </div>
   </div>)
 }
-              
+const Ui = () => {
+
+  return <div class="text-black dark:text-white bg-gray-200 dark:bg-slate-900 font-mono rounded-lg m-2 p-4 container mx-auto px-10 max-w-max relative">
+            <h1 id='title' class="p-2 font-mono text-3xl text-black dark:text-white dark:bg-slate-800 mx-auto container text-center sm:text-center sm:shrink-0">File converter</h1>
+            <div id="inputs" class="text-white font-mono sm:">
+              <div class="flex flex-row w-full m-2">
+                <div class="flex-1"></div><label for="mdFile" id="convertBtn" class=" bg-green-600 hover:bg-green-700 text-white border font-bold py-2 px-4 rounded-full content-center space-x-4 space-y-4 cursor-pointer sm:shrink-0" >Select a File</label>
+                <input id="mdFile" type="file" placeholder="Give me a md file" accept=".md" class='invisible'></input>
+                <div class="flex-1"></div>
+              </div>
+              <div id='app'></div>
+              </div>
+      </div>
+}             
 
 //Language toggle
 const MultiLang = () => {
   //const [open, setOpen] = createSignal(false)
-  const translate = function langs (){
+  const translate = function languages (){
     
     //let btnLang = document.querySelector('langs'),
-    <For each={langs()}>{(languages)=>
+    <For each={lang()}>{(languages)=>
       <ul class='p-2'>
         <li>
            {languages}
@@ -159,11 +172,11 @@ const MultiLang = () => {
 
       });
 
-    link.forEach(el => {
+    data.forEach(element => {
  
-     el.addEventListener('click', ()=>{
+     element.addEventListener('click', ()=>{
 
-       let attr: string = el.getAttribute('lang') ?? 'spanish';
+       let attr: string = element.getAttribute('lang') ?? 'spanish';
         
        setLang(attr=="english"?english:spanish)
      
@@ -199,4 +212,5 @@ const MultiLang = () => {
 
 render (()=> <SideBar2 />, document.getElementById("sidebarMenu")! )
 render (()=> <MultiLang />, document.getElementById("lang")! )
+render (()=> <Ui />, document.getElementById("ui")! )
  render(() => <Router><App /></Router>, document.getElementById("app")!);

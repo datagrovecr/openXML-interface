@@ -36,10 +36,10 @@ namespace DocumentPreview {
 
         [JSExport]
         //takes docx file and converts it to md
-       /* public static string openDocxFile(byte[] file)
+        public static string openDocxFile(byte[] file)
         {
             return convertToMd(file).Result;
-        }*/
+        }
 
 
 
@@ -64,11 +64,11 @@ namespace DocumentPreview {
             convertToDocx(file);
         }
 
-       /* public static async void convertToDocx(string data)
+        public static async void convertToDocx(string data)
         {
             var outStream = new MemoryStream();
 
             await DgDocx.md_to_docx(data, outStream);
-        }*/
+        }
     }
 }
