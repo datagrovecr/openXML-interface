@@ -4,8 +4,9 @@ import { createSignal, Component, JSXElement, For } from 'solid-js'
 import { render } from 'solid-js/web'
 import { A, Routes, Route, Router } from "@solidjs/router"
  import { Icon } from "solid-heroicons";
- import { bars_3, globeAlt} from "solid-heroicons/solid";
-import { Editor } from './editor'
+ import { bars_3} from "solid-heroicons/solid";
+//import { Editor } from './editor'
+import { Preview } from './editor';
 const spanish = {  
   'title': 'Convertidor de Archivos',
 'upload': 'Subir Archivo',
@@ -17,6 +18,7 @@ const english = {
 const [lang, setLang] = createSignal<{[key:string]:string}>(spanish)
 
 // bolt-slash for crossed out bolt icon. xMark X -> X icon, sun, moon
+//globeAlt icon for translate dropdown
 const Center: Component<{ children: JSXElement }> = (props) => {
   return <div class='flex flex-row'>
     <div class='flex-1' />
@@ -37,12 +39,12 @@ const Home = () => {
 }
 const About = () => {
   return <Center>
-    <div class='m-2 p-2 rounded-md bg-white dark:bg-slate-900 text-black dark:text-white' >Descriptions, what is markdown, why use it, is the converter secure, etc.</div>
+    <div class='m-2 p-2 rounded-md bg-white dark:bg-slate-900 text-black dark:text-white' ></div>
   </Center>
 }
-const Preview = () => {
+const Docpreview = () => {
   return  <div id='preview' class='m-2 p-2 rounded-md bg-white dark:bg-slate-900 text-black dark:text-white max-h-screen sm:max-h-screen' >
-    <Editor/>
+    <Preview />
   
   </div>
 }
@@ -59,7 +61,7 @@ function App() {
     <Routes>
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
-      <Route path="/preview" component={Preview} />
+      <Route path="/preview" component={Docpreview} />
     </Routes>
   </>
 }

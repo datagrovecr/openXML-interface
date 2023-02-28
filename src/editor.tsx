@@ -17,7 +17,7 @@ import { history, historyKeymap } from "@codemirror/commands"
 import { searchKeymap, highlightSelectionMatches } from "@codemirror/search"
 import { autocompletion, completionKeymap, closeBrackets, closeBracketsKeymap } from "@codemirror/autocomplete"
 import { lintKeymap } from "@codemirror/lint"
-import { createSignal} from 'solid-js'
+import { createSignal, Show} from 'solid-js'
 //import {languages} from "@codemirror/language-data"
 
 
@@ -68,7 +68,7 @@ export const minimalSetup: Extension = (() => [
 ])()
 
 let startState = EditorState.create({
-    doc: "Add preview",
+    doc: "View your document",
     extensions: [
         basicSetup,
         markdown(),
@@ -77,35 +77,28 @@ let startState = EditorState.create({
 })
 //startState contains info doc: is the placeholder
 // Using document changes and view.dispatch
-//let changes = []
-view.dispatch({
-    changes: {from: 0, insert: "#!/usr/bin/env node\n"}
-  })
-const [view, setView] = createSignal<EditorView?>(null)
 
-
+ const [view, setView] = createSignal<EditorView|null>(null)
 export const Editor : Component<{ setView: (v:EditorView)=> void }> = () => {
     let div : HTMLDivElement 
     onMount(()=>{
-        setView = new EditorView({
-            state: startState,
+        setView(new EditorView({
+            state: startState, 
             parent: div,
-        }
-    )})
+        })) 
+    })
 
 
     return <div ref={div!}/>
 }
-<Editor setView = {setView } />
-/*export const Editor : Component<{ setView: (v: EditorView)=>void }> = () => {
-    let div : HTMLDivElement 
-    onMount(()=>{
-        setView(new EditorView({
-            state: startState,
-            parent: div,
-        }
-    ))})
+export const Preview:Component<{}> = () =>{
+    //const [view, setView] = createSignal<EditorView|null>(null)
 
+    return <div>
+            <Editor setView = {setView} />
+            <Show when={view()}>
+            <button onclick={()=>view()?.dispatch({})}></button>
+            </Show>
 
-    return <div ref={div!}/>
-}*/
+        </div>
+}
