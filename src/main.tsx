@@ -82,10 +82,7 @@ function SideBar2(){
   <div class='flex'>
 
     <div class={`bg-white dark:bg-slate-600 text-black dark:text-white h-screen p-5 ${open() ? "w-72 bg-gray-200": "w-20 bg-white"} duration-300 absolute`}>
-      
       <button onclick={()=>{
-
-        console.log("Test for tech talk!")
         setOpen(!open())
         
         // if (items().length>1) {
@@ -115,6 +112,7 @@ function SideBar2(){
     </div>
   </div>)
 }
+//File preview and document conversion
 const Ui = () => {
 
   return <div class="text-black dark:text-white bg-gray-200 dark:bg-slate-900 font-mono rounded-lg m-2 p-4 container mx-auto px-10 max-w-max relative">
@@ -122,7 +120,7 @@ const Ui = () => {
             <div id="inputs" class="text-white font-mono sm:">
               <div class="flex flex-row w-full m-2">
                 <div class="flex-1"></div><label for="mdFile" id="convertBtn" class=" bg-green-600 hover:bg-green-700 text-white border font-bold py-2 px-4 rounded-full content-center space-x-4 space-y-4 cursor-pointer sm:shrink-0" >Select a File</label>
-                <input id="mdFile" type="file" placeholder="Give me a md file" accept=".md" class='invisible'></input>
+                <input id="mdFile" type="file" placeholder="Give me a md file" accept=".md" class='invisible' onchange={Preview}></input>
                 <div class="flex-1"></div>
               </div>
               <div id='app'></div>

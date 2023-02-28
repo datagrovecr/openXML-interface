@@ -18,6 +18,8 @@ import { searchKeymap, highlightSelectionMatches } from "@codemirror/search"
 import { autocompletion, completionKeymap, closeBrackets, closeBracketsKeymap } from "@codemirror/autocomplete"
 import { lintKeymap } from "@codemirror/lint"
 import { createSignal, Show} from 'solid-js'
+import { Icon } from "solid-heroicons";
+import { document } from "solid-heroicons/solid";
 //import {languages} from "@codemirror/language-data"
 
 
@@ -78,7 +80,7 @@ let startState = EditorState.create({
 //startState contains info doc: is the placeholder
 // Using document changes and view.dispatch
 
- const [view, setView] = createSignal<EditorView|null>(null)
+const [view, setView] = createSignal<EditorView|null>(null)
 export const Editor : Component<{ setView: (v:EditorView)=> void }> = () => {
     let div : HTMLDivElement 
     onMount(()=>{
@@ -92,12 +94,16 @@ export const Editor : Component<{ setView: (v:EditorView)=> void }> = () => {
     return <div ref={div!}/>
 }
 export const Preview:Component<{}> = () =>{
+
     //const [view, setView] = createSignal<EditorView|null>(null)
 
     return <div>
             <Editor setView = {setView} />
             <Show when={view()}>
-            <button onclick={()=>view()?.dispatch({})}></button>
+            <button onclick={()=>view()?.dispatch({changes:{from: 0, insert:"#!/usr/bin/env node\n"}})}> 
+            {/*Added icon to identify where button is*/}
+            <Icon path={document} style="width: 24px; color:black dark:color: white"/>
+            </button>
             </Show>
 
         </div>
