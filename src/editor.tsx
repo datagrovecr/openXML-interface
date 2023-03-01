@@ -100,8 +100,10 @@ export const Preview:Component<{}> = () =>{
     return <div>
             <Editor setView = {setView} />
             <Show when={view()}>
-            <button onclick={()=>view()?.dispatch({changes:{from: 0, insert:"#!/usr/bin/env node\n"}})}> 
-            {/*Added icon to identify where button is*/}
+            <button onclick={()=>view()?.dispatch({changes:{from: 0, insert:"File contents\n"}})}> 
+            {/*Added icon to identify where button is
+            When clicked it displays everything in the insert line 103
+            insert should have contents of file*/}
             <Icon path={document} style="width: 24px; color:black dark:color: white"/>
             </button>
             </Show>

@@ -7,7 +7,7 @@ import { A, Routes, Route, Router } from "@solidjs/router"
  import { bars_3} from "solid-heroicons/solid";
 //import { Editor } from './editor'
 import { Preview } from './editor';
-const spanish = {  
+/*const spanish = {  
   'title': 'Convertidor de Archivos',
 'upload': 'Subir Archivo',
 'download': 'Descargar Archivo'}
@@ -15,7 +15,7 @@ const english = {
   'title': 'File converter',
   'upload': 'Upload file',
   'download': 'Download File'}
-const [lang, setLang] = createSignal<{[key:string]:string}>(spanish)
+const [lang, setLang] = createSignal<{[key:string]:string}>(spanish)*/
 
 // bolt-slash for crossed out bolt icon. xMark X -> X icon, sun, moon
 //globeAlt icon for translate dropdown
@@ -120,7 +120,7 @@ const Ui = () => {
             <div id="inputs" class="text-white font-mono sm:">
               <div class="flex flex-row w-full m-2">
                 <div class="flex-1"></div><label for="mdFile" id="convertBtn" class=" bg-green-600 hover:bg-green-700 text-white border font-bold py-2 px-4 rounded-full content-center space-x-4 space-y-4 cursor-pointer sm:shrink-0" >Select a File</label>
-                <input id="mdFile" type="file" placeholder="Give me a md file" accept=".md" class='invisible' onchange={Preview}></input>
+                <input id="mdFile" type="file" placeholder="Give me a docx file" accept=".docx" class='invisible' onchange={Preview}></input>
                 <div class="flex-1"></div>
               </div>
               <div id='app'></div>
@@ -129,88 +129,88 @@ const Ui = () => {
 }             
 
 //Language toggle
-const MultiLang = () => {
-  //const [open, setOpen] = createSignal(false)
-  const translate = function languages (){
+// const MultiLang = () => {
+//   //const [open, setOpen] = createSignal(false)
+//   const translate = function languages (){
     
-    //let btnLang = document.querySelector('langs'),
-    <For each={lang()}>{(languages)=>
-      <ul class='p-2'>
-        <li>
-           {languages}
-        </li>
-      </ul>
-      }
-      </For>
-    //   download = document.getElementById('download')!,
-    //   upload = document.getElementById('upload')!,
-    //  title = document.getElementById('title')!,
-    //   convertBtn = document.getElementById('convertBtn')!;
+//     //let btnLang = document.querySelector('langs'),
+//     <For each={lang()}>{(languages)=>
+//       <ul class='p-2'>
+//         <li>
+//            {languages}
+//         </li>
+//       </ul>
+//       }
+//       </For>
+//     //   download = document.getElementById('download')!,
+//     //   upload = document.getElementById('upload')!,
+//     //  title = document.getElementById('title')!,
+//     //   convertBtn = document.getElementById('convertBtn')!;
 
-    interface LanguageData {
-      title: string;
-      upload: string;
-      download: string;
-      convertBtn: string;
-    }
+//     interface LanguageData {
+//       title: string;
+//       upload: string;
+//       download: string;
+//       convertBtn: string;
+//     }
 
-    const data = new Map<string, LanguageData>();
-    data.set(
-      "spanish" , {
-        title: 'Convertidor de Archivos',
-        upload: 'Subir Archivo',
-        download: 'Descargar Archivo',
-        convertBtn: 'Selección de Archivo'
-      }
-    );
-    data.set(
-      "english", {
-        title : 'File converter',
-        upload: 'Upload file',
-        download: 'Download File',
-        convertBtn: 'Select file'
+//     const data = new Map<string, LanguageData>();
+//     data.set(
+//       "spanish" , {
+//         title: 'Convertidor de Archivos',
+//         upload: 'Subir Archivo',
+//         download: 'Descargar Archivo',
+//         convertBtn: 'Selección de Archivo'
+//       }
+//     );
+//     data.set(
+//       "english", {
+//         title : 'File converter',
+//         upload: 'Upload file',
+//         download: 'Download File',
+//         convertBtn: 'Select file'
 
-      });
+//       });
 
-    data.forEach(element => {
+//     data.forEach(element => {
  
-     element.addEventListener('click', ()=>{
+//      element.addEventListener('click', ()=>{
 
-       let attr: string = element.getAttribute('lang') ?? 'spanish';
+//        let attr: string = element.getAttribute('lang') ?? 'spanish';
         
-       setLang(attr=="english"?english:spanish)
+//        setLang(attr=="english"?english:spanish)
      
 
-      //  title.textContent = data.get(attr)?.title ?? 'File converter'
-      //  convertBtn.textContent = data.get(attr)?.convertBtn ?? 'Convert file'
-      //  upload.textContent = data.get(attr)?.upload ?? 'Upload file'
-      //  download.textContent = data.get(attr)?.download ?? 'Download file'
-      //  convertBtn.textContent = data.get(attr)?.convertBtn ?? 'Convert file'
-     })
+//       //  title.textContent = data.get(attr)?.title ?? 'File converter'
+//       //  convertBtn.textContent = data.get(attr)?.convertBtn ?? 'Convert file'
+//       //  upload.textContent = data.get(attr)?.upload ?? 'Upload file'
+//       //  download.textContent = data.get(attr)?.download ?? 'Download file'
+//       //  convertBtn.textContent = data.get(attr)?.convertBtn ?? 'Convert file'
+//      })
      
-    });
+//     });
 
-  }  
-  return(
-    <div id='langs' class='absolute top-10 right-2'>
+//   }  
+//   return(
+//     <div id='langs' class='absolute top-10 right-2'>
 
-      <button id="dropdownButton"  class="text-white bg-gray-400 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="button">Languages</button>
-      <div id="menu" class={`z-10  bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700`}>
-          <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
-            <li>
-              <a class='p-2 block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white' id='btnLang' lang='english' onclick={translate}>ENG</a>
-            </li>
-            <li>
-              <a class='pr-2 block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white' id='btnLang' lang='spanish' onclick={translate}>SPA</a>
-            </li>
-          </ul>
-      </div>
-    </div>
-    )
-}
+//       <button id="dropdownButton"  class="text-white bg-gray-400 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="button">Languages</button>
+//       <div id="menu" class={`z-10  bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700`}>
+//           <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
+//             <li>
+//               <a class='p-2 block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white' id='btnLang' lang='english' onclick={translate}>ENG</a>
+//             </li>
+//             <li>
+//               <a class='pr-2 block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white' id='btnLang' lang='spanish' onclick={translate}>SPA</a>
+//             </li>
+//           </ul>
+//       </div>
+//     </div>
+//     )
+// }
 
 
 render (()=> <SideBar2 />, document.getElementById("sidebarMenu")! )
-render (()=> <MultiLang />, document.getElementById("lang")! )
+//render (()=> <MultiLang />, document.getElementById("lang")! )
 render (()=> <Ui />, document.getElementById("ui")! )
  render(() => <Router><App /></Router>, document.getElementById("app")!);
