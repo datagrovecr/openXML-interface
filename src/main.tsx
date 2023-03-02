@@ -75,7 +75,7 @@ function SideBar2(){
    return (
   <div class='flex'>
 
-    <div class={`bg-white dark:bg-slate-800  text-black dark:text-white h-screen p-5 ${open() ? "w-72 bg-gray-200": "w-20 bg-white "} duration-300 absolute`}>
+    <div class={`bg-white dark:bg-slate-800  text-black dark:text-white h-screen p-5 ${open() ? "w-72 bg-gray-200": "w-20  bg-white "} duration-300 absolute`}>
       <button onclick={()=>{
         setOpen(!open())
         
@@ -94,10 +94,12 @@ function SideBar2(){
       <Icon path={open()?xMark:bars_3} style="width: 24px; color:black dark:color: white" />
       </button>
       <div>
+       
         <For each={items()}>{(items)=>
         <ul class='p-2 flex w-full justify-between cursor-pointer items-center mb-6'>
           <li>
-             {items}
+             
+          {open() ? (items) : (<p></p>)}
           </li>
         </ul>
         }
